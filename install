@@ -176,6 +176,10 @@ def create_jobe_user_and_files(install_dir, webserver_user, max_uid):
     make_directory('/home/jobe/runs', 'jobe', webserver_user)
     print("Setting up Jobe files directory (/home/jobe/files)")
     make_directory('/home/jobe/files', 'jobe', webserver_user)
+    do_command('chgrp jobe /home/jobe/files')
+    do_command('chmod 770 /home/jobe/files')
+    do_command('chmod g+s /home/jobe/files')
+    do_command('chown -R www-data:jobe /home/jobe/files')
     print("Setting up Jobe log directory (/var/log/jobe)")
     make_directory('/var/log/jobe', 'jobe', webserver_user)
 
